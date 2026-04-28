@@ -9,7 +9,13 @@ from typing import Callable, Dict, List, Optional, Any
 from dataclasses import dataclass, field
 from enum import Enum
 from datetime import datetime, timedelta
-import croniter
+
+# Optional: croniter for cron expression support
+try:
+    import croniter
+    CRONITER_AVAILABLE = True
+except ImportError:
+    CRONITER_AVAILABLE = False
 
 
 class TaskStatus(Enum):
@@ -49,6 +55,8 @@ class Task:
         elif self.schedule_type == "interval":
             self.next_run = time.time() + self.interval_seconds
         elif self.schedule_type == "cron":
+            if not CRONITER_AVAILABLE:
+                raise ImportError("croniter is required for cron scheduling. Install with: pip install croniter")
             cron = croniter.croniter(self.cron_expression, datetime.now())
             self.next_run = cron.get_next(float)
 
