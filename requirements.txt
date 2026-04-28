@@ -1,0 +1,10 @@
+# Core dependencies
+openai>=1.0.0
+httpx>=0.25.0
+pydantic>=2.0.0
+pyyaml>=6.0
+
+# Optional: enhanced features
+redis>=5.0.0          # Redis memory backend
+chromadb>=0.4.0       # Vector storage for semantic memory
+apscheduler>=3.10.0   # Advanced scheduling

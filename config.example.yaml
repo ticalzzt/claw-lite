@@ -1,0 +1,31 @@
+# Claw-Lite Configuration Example
+
+llm:
+  # LLM Provider: openai, anthropic, minimax
+  provider: minimax
+  api_key: your-api-key-here
+  base_url: https://api.minimax.chat/v1
+  model: abab6-chat
+  temperature: 0.7
+  max_tokens: 2048
+
+memory:
+  # Memory storage type: file, sqlite, redis
+  type: file
+  path: ./data/memory
+  max_size: 1000
+  ttl: 86400  # Time to live in seconds (24 hours)
+
+scheduler:
+  enable: true
+  timezone: Asia/Shanghai
+  max_workers: 4
+
+agent:
+  max_turns: 20
+  system_prompt: "You are a helpful AI assistant."
+  enable_tools: true
+
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
